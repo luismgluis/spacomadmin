@@ -1,0 +1,27 @@
+.HomeSider {
+  z-index: 99;
+  .logo {
+    // float: left;
+    // width: 120px;
+    // height: auto;
+    // margin-left: 15px;
+    // margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+  }
+  .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+  }
+  .topMenu {
+    margin-bottom: auto;
+  }
+  .siderFooter {
+    margin-top: auto;
+    .ant-menu {
+      background-color: #055eb1;
+    }
+  }
+}
