@@ -1,77 +1,98 @@
+import { Typography } from "@mui/material";
 import React from "react";
-import { theme0 } from "../../../themes/theme0";
-import { useTheme } from "../../hooks/useTheme";
+import { Colors } from "../../../themes/Colors";
+import {
+	CustomStylesFontType,
+	CustomStylesType,
+} from "../CView/useCustomViewStyles";
+
 const TAG = "CUSTOM TEXT";
 
-type CTextProps = {
-  className?: string;
-  type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
-  paddingX?: number | undefined;
-  paddingY?: number | undefined;
-  children?: any;
-  color?: keyof typeof theme0;
-  style?: React.CSSProperties;
-};
-const CText: React.FC<CTextProps> = ({
-  className,
-  type,
-  children,
-  color = undefined,
-  style,
-  paddingX,
-  paddingY,
-}) => {
-  const theme = useTheme();
-  const customStyles: React.CSSProperties = {
-    color: color ? theme.colors[color!] : theme.colors["color-primary-800"],
-    paddingLeft: paddingX,
-    paddingRight: paddingX,
-    paddingTop: paddingY,
-    paddingBottom: paddingY,
-    ...style,
-  };
-  if (type === "h1")
-    return (
-      <h1 className={className} style={customStyles}>
-        {children}
-      </h1>
-    );
-  if (type === "h2")
-    return (
-      <h2 className={className} style={customStyles}>
-        {children}
-      </h2>
-    );
-  if (type === "h3")
-    return (
-      <h3 className={className} style={customStyles}>
-        {children}
-      </h3>
-    );
-  if (type === "h4")
-    return (
-      <h4 className={className} style={customStyles}>
-        {children}
-      </h4>
-    );
-  if (type === "h5")
-    return (
-      <h5 className={className} style={customStyles}>
-        {children}
-      </h5>
-    );
-  if (type === "h6")
-    return (
-      <h6 className={className} style={customStyles}>
-        {children}
-      </h6>
-    );
-  if (type === "p")
-    return (
-      <p className={className} style={customStyles}>
-        {children}
-      </p>
-    );
-  return <h5 style={customStyles}>{children}</h5>;
+type CTextProps = CustomStylesType &
+	CustomStylesFontType & {
+		className?: string;
+		type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+		size?: number;
+		color?: keyof typeof Colors;
+		style?: React.CSSProperties;
+		children?: JSX.Element | string;
+	};
+const CText: React.FC<CTextProps> = (props) => {
+	const customStyles: React.CSSProperties = {
+		color: props.color ? Colors[props.color] : Colors.black,
+		fontSize: props.size ? props.size : undefined,
+		...props.style,
+	};
+	if (props.type === "h1")
+		return (
+			<Typography
+				variant="h1"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "h2")
+		return (
+			<Typography
+				variant="h2"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "h3")
+		return (
+			<Typography
+				variant="h3"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "h4")
+		return (
+			<Typography
+				variant="h4"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "h5")
+		return (
+			<Typography
+				variant="h5"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "h6")
+		return (
+			<Typography
+				variant="h6"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	if (props.type === "p")
+		return (
+			<Typography
+				variant="caption"
+				className={props.className}
+				style={customStyles}
+			>
+				{props.children}
+			</Typography>
+		);
+	return <h5 style={customStyles}>{props.children}</h5>;
 };
 export default CText;

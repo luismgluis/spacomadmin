@@ -1,18 +1,19 @@
 import "./Home.scss";
 import React, { useEffect, useMemo, useState } from "react";
 
-import Pay from "../Pay/Pay";
-
-import HomeTop from "./HomeTop/HomeTop";
 import { useCurrentConfig } from "../../hooks/currentConfig";
-import Wifi from "../Wifi/Wifi";
+
 import CView from "../../ui/CView/CView";
+import AdminHome from "../AdminHome/AdminHome";
+import HomeTopLarge from "./HomeTopLarge/HomeTopLarge";
+import HomeTopSmall from "./HomeTopSmall/HomeTopSmall";
+import HomeSider from "./HomeSider/HomeSider";
 
 const TAG = "Home";
 type HomeProps = {
 	prop1?: any;
 };
-export type HomePaySelected = "pay" | "wifi";
+export type HomePaySelected = "home" | "config";
 type HomePageSelectedOptionsItem = {
 	id: HomePaySelected;
 	displayName: string;
@@ -22,23 +23,23 @@ type HomePageSelectedOptionsItem = {
 const Home: React.FC<HomeProps> = ({ prop1 }) => {
 	console.log(TAG, "render");
 	const config = useCurrentConfig();
-	const [pageSelected, setPageSelected] = useState<HomePaySelected>("pay");
+	const [pageSelected, setPageSelected] = useState<HomePaySelected>("home");
 
 	useEffect(() => setPageSelected(config.homePageSelected), [config]);
 
 	const homePageSelectedOptions = useMemo<HomePageSelectedOptionsItem[]>(
 		() => [
 			{
-				id: "pay",
+				id: "home",
 				displayName: "Pagos",
 				headerName: "PAGOS",
-				component: <Pay />,
+				component: <AdminHome />,
 			},
 			{
-				id: "wifi",
+				id: "config",
 				displayName: "Wifi",
 				headerName: "WIFI",
-				component: <Wifi />,
+				component: <AdminHome />,
 			},
 		],
 		[]
@@ -51,9 +52,11 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 	}, [pageSelected, homePageSelectedOptions]);
 
 	return (
-		<CView className="Home" display="flex">
+		<CView className="Home" variant="flex-horizontal">
+			<HomeSider />
 			<CView minHeight={"100vh"}>
-				<HomeTop />
+				<HomeTopLarge />
+				<HomeTopSmall />
 				<CView>{currentOption?.component}</CView>
 			</CView>
 		</CView>

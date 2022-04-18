@@ -1,53 +1,38 @@
 import "./CButton.scss";
 import React from "react";
+import {
+	CustomStylesType,
+	useCustomStyles,
+} from "../CView/useCustomViewStyles";
+import { Colors } from "../../../themes/Colors";
+import { Button } from "@mui/material";
 
-import { useTheme } from "../../hooks/useTheme";
 const TAG = "CUSTOM BUTTON";
-interface CButtonProps {
-  className?: string;
-  text?: any;
-  width?: number | string;
-  onPress?: () => void;
-  danger?: boolean;
-  marginX?: number | string;
-  fontColor?: string;
-  fontSize?: number;
-  background?: string;
-  hoverBackground?: string;
-  ghost?: boolean;
-}
-const CButton: React.FC<CButtonProps> = ({
-  text,
-  onPress = () => null,
-  danger = false,
-  width = "100%",
-  marginX,
-  ghost,
-  fontColor,
-  fontSize = 18,
-  background,
+type CButtonProps = {
+	className?: string;
+	onPress?: () => void;
+	mode?: "danger" | "primary" | "optional";
+	children?: string | JSX.Element;
+	ghost?: boolean;
+	actionx?: "submit";
+} & CustomStylesType;
 
-  hoverBackground,
-  className,
-}) => {
-  console.log(TAG);
-  const theme = useTheme();
-  const textIcon = () => {
-    return (
-      <h5
-        style={{
-          fontSize: fontSize,
-          color: fontColor ? fontColor : theme.colors["color-primary-900"],
-        }}
-      >
-        {text}
-      </h5>
-    );
-  };
-  if (danger) {
-    background = theme.colors["color-danger-500"];
-    hoverBackground = theme.colors["color-danger-100"];
-  }
-  return <button></button>;
+const CButton: React.FC<CButtonProps> = (props) => {
+	const styles = useCustomStyles(props);
+	if (props.mode === "danger") {
+		props.bg = Colors.secondary500;
+		props.radius = 20;
+		styles.border = 0;
+	}
+	return (
+		<Button
+			{...(props as any)}
+			type={props.actionx || undefined}
+			// action={props.action || ""}
+			variant={!props.ghost ? "contained" : "text"}
+			style={styles}
+			onClick={() => props.onPress && props.onPress()}
+		></Button>
+	);
 };
 export default CButton;

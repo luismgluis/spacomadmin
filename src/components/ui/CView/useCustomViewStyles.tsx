@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import utils from "../../../libs/utils/utils";
 import { Colors } from "../../../themes/Colors";
 
-type mp = "auto" | number;
+type mp = "auto" | string | number;
 export type CustomStylesType = {
 	variant?: "flex-horizontal" | "flex-vertital" | "scroll";
 	m?: mp;
@@ -21,6 +21,7 @@ export type CustomStylesType = {
 	pb?: mp;
 	//background
 	bg?: "black" | "white" | "blue" | string;
+	bgx?: keyof typeof Colors;
 	// font color
 	color?: string;
 	//shadow
@@ -51,6 +52,7 @@ export type CustomStylesType = {
 		| "inline-table"
 		| "inline-flex"
 		| "inline-grid";
+	flex?: number;
 };
 
 export type CustomStylesFontType = {
@@ -62,7 +64,7 @@ export type CustomStylesFontType = {
 	colorx?: keyof typeof Colors;
 };
 export function useCustomStyles(props: any) {
-	const [styles, setStyles] = useState<React.CSSProperties>();
+	const [styles, setStyles] = useState<React.CSSProperties>({});
 	useLayoutEffect(() => {
 		let newStyles: React.CSSProperties = utils.objects.cloneObject(
 			props.style
@@ -188,6 +190,8 @@ export function useCustomStyles(props: any) {
 		if (props.blond) {
 			newStyles.fontWeight = "700";
 		}
+		if (props.flex) newStyles.flex = props.flex;
+
 		const pColor: keyof typeof Colors = props.colorx;
 		if (props.colorx) newStyles.color = Colors[pColor];
 		setStyles(newStyles);

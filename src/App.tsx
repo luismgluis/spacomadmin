@@ -7,6 +7,10 @@ import Login from "./components/pages/Login/Login";
 import Home from "./components/pages/Home/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import theme from "./themes/themeProvider";
+import {
+	SessionContextProvider,
+	useSessionContextStore,
+} from "./context/SessionContext";
 
 type RoutesType = {
 	path: string;
@@ -18,13 +22,18 @@ function App() {
 	const routes = useMemo(() => {
 		const arr: RoutesType[] = [
 			{
-				path: "/pay",
-				element: <Home />,
+				path: "/login",
+				element: <Login />,
 				private: true,
 			},
 			{
 				path: "/home",
-				element: <Login />,
+				element: <Home />,
+				private: true,
+			},
+			{
+				path: "/",
+				element: <Home />,
 				private: true,
 			},
 		];
@@ -50,13 +59,15 @@ function App() {
 			);
 		});
 	}, []);
+	const sessionStore = useSessionContextStore();
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<BrowserRouter>
-				{/* <CustomAlert /> */}
-				<Routes>{routes}</Routes>
-			</BrowserRouter>
+			<SessionContextProvider value={sessionStore}>
+				<CssBaseline />
+				<BrowserRouter>
+					<Routes>{routes}</Routes>
+				</BrowserRouter>
+			</SessionContextProvider>
 		</ThemeProvider>
 	);
 }
