@@ -10,7 +10,7 @@ type DatesRangeProps = {
 };
 const DatesRange: React.FC<DatesRangeProps> = ({ onDateChange }) => {
 	console.log(TAG, "render");
-	const screenXs = useMediaQuery("down", "xs");
+	const screenXs = useMediaQuery("down", "sm");
 	const [filterDates, setFilterDates] = useState({ min: "", max: "" });
 	const lastDates = useRef({ min: 0, max: 0 });
 	useEffect(() => {

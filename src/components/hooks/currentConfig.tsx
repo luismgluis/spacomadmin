@@ -34,3 +34,16 @@ export function useHomeSidebar() {
 		setVisible: setSidebarVisible,
 	};
 }
+
+export function useSetHomePage() {
+	const config = useCurrentConfig();
+	const setConfig = useSetCurrentConfig();
+
+	const change = useCallback(
+		(page: HomePaySelected) => {
+			setConfig({ ...config, homePageSelected: page });
+		},
+		[setConfig, config]
+	);
+	return change;
+}

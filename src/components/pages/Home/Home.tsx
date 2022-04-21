@@ -8,12 +8,18 @@ import AdminHome from "../AdminHome/AdminHome";
 import HomeTopLarge from "./HomeTopLarge/HomeTopLarge";
 import HomeTopSmall from "./HomeTopSmall/HomeTopSmall";
 import HomeSidebar from "./HomeSidebar/HomeSidebar";
+import Config from "../Config/Config";
 
 const TAG = "Home";
 type HomeProps = {
 	prop1?: any;
 };
-export type HomePaySelected = "home" | "config";
+export type HomePaySelected =
+	| "home"
+	| "tasks"
+	| "clients"
+	| "employees"
+	| "config";
 type HomePageSelectedOptionsItem = {
 	id: HomePaySelected;
 	displayName: string;
@@ -39,7 +45,7 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 				id: "config",
 				displayName: "Configuracion",
 				headerName: "Configuracion",
-				component: <AdminHome />,
+				component: <Config />,
 			},
 		],
 		[]

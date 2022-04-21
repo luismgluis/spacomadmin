@@ -13,18 +13,18 @@ import {
 } from "../../../hooks/currentConfig";
 type HomeTopSmallProps = {};
 const HomeTopSmall: React.FC<HomeTopSmallProps> = ({}) => {
-	const breakXs = useMediaQuery("down", "xs");
+	const screenXs = useMediaQuery("down", "sm");
 	const config = useCurrentConfig();
 	const setConfig = useSetCurrentConfig();
 
 	const homeSideBarToggle = useHomeSidebar().toggle;
 
-	if (!breakXs) return <></>;
+	if (!screenXs) return <></>;
 	return (
 		<CView className="HomeTop" variant="flex-horizontal" p={10}>
 			<CView className="menu" flex={1}>
 				<div className="logo">
-					<AppIconLarge width={breakXs ? 140 : 120} height={40} />
+					<AppIconLarge width={screenXs ? 140 : 120} height={40} />
 				</div>
 			</CView>
 			<CView
