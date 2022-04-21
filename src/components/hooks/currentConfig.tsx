@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSessionContext } from "../../context/SessionContext";
 import { HomePaySelected } from "../pages/Home/Home";
 
 export type CurrentConfigType = {
 	homePageSelected: HomePaySelected;
-	siderMenuOpened?: boolean;
+	sideBarMenuOpened?: boolean;
 };
 
 export function useCurrentConfig() {
@@ -15,31 +15,22 @@ export function useSetCurrentConfig() {
 	const session = useSessionContext();
 	return session.setConfig;
 }
-//   useSelector((store: any) => {
-//     try {
-//       const newData: CurrentConfigType = store.reducerConfig;
-//       if (!utils.objects.isEmpty(newData)) {
-//         if (newData.homePageSelected !== oldData.homePageSelected) {
-//           setOldData(newData);
-//           return newData;
-//         }
-//       }
-//     } catch (error) {
-//       console.log(TAG, error);
-//     }
-//     return null;
-//   });
 
-//   return oldData;
-// }
+export function useHomeSidebar() {
+	const config = useCurrentConfig();
+	const setConfig = useSetCurrentConfig();
 
-// export function useSetCurrentConfig() {
-//   const dispatch = useDispatch();
-//   const callBack = useCallback(
-//     (data: CurrentConfigType) => {
-//       dispatch(reduxSesion.setCurrentConfig(data));
-//     },
-//     [dispatch]
-//   );
-//   return callBack;
-// }
+	const toggleSidebar = useCallback(() => {
+		setConfig({ ...config, sideBarMenuOpened: !config.sideBarMenuOpened });
+	}, [config, setConfig]);
+	const setSidebarVisible = useCallback(
+		(visible: boolean) => {
+			setConfig({ ...config, sideBarMenuOpened: visible });
+		},
+		[config, setConfig]
+	);
+	return {
+		toggle: toggleSidebar,
+		setVisible: setSidebarVisible,
+	};
+}

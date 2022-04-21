@@ -31,14 +31,14 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 		() => [
 			{
 				id: "home",
-				displayName: "Pagos",
-				headerName: "PAGOS",
+				displayName: "Inicio",
+				headerName: "Inicio",
 				component: <AdminHome />,
 			},
 			{
 				id: "config",
-				displayName: "Wifi",
-				headerName: "WIFI",
+				displayName: "Configuracion",
+				headerName: "Configuracion",
 				component: <AdminHome />,
 			},
 		],

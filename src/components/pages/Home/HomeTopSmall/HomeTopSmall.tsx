@@ -8,6 +8,7 @@ import CView from "../../../ui/CView/CView";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
 	useCurrentConfig,
+	useHomeSidebar,
 	useSetCurrentConfig,
 } from "../../../hooks/currentConfig";
 type HomeTopSmallProps = {};
@@ -16,9 +17,7 @@ const HomeTopSmall: React.FC<HomeTopSmallProps> = ({}) => {
 	const config = useCurrentConfig();
 	const setConfig = useSetCurrentConfig();
 
-	const openSlide = useCallback(() => {
-		setConfig({ ...config, siderMenuOpened: !config.siderMenuOpened });
-	}, [config, setConfig]);
+	const homeSideBarToggle = useHomeSidebar().toggle;
 
 	if (!breakXs) return <></>;
 	return (
@@ -34,7 +33,7 @@ const HomeTopSmall: React.FC<HomeTopSmallProps> = ({}) => {
 				width="100%"
 				variant="flex-horizontal"
 			>
-				<IconButton size="large" onClick={openSlide}>
+				<IconButton size="large" onClick={homeSideBarToggle}>
 					<MenuIcon fontSize="large" htmlColor="white" />
 				</IconButton>
 				<CView centerItems>

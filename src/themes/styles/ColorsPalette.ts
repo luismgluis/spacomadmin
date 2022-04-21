@@ -34,6 +34,7 @@ export const bg300 = "#bfdbf7";
 export const bg400 = "#1f7a8c";
 export const bg500 = "#004e98";
 export const bg600 = "#034078";
+export const bgt600 = "#013564de";
 export const bg700 = "#001f54";
 export const bg800 = "#0a1128";
 export const bg900 = "#191919";

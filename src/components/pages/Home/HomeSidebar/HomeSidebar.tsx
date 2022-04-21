@@ -4,6 +4,7 @@ import "./HomeSidebar.scss";
 import { HomePaySelected } from "../Home";
 import {
 	useCurrentConfig,
+	useHomeSidebar,
 	useSetCurrentConfig,
 } from "../../../hooks/currentConfig";
 import CView from "../../../ui/CView/CView";
@@ -16,6 +17,8 @@ type HomeSiderProps = {};
 const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 	const setConfig = useSetCurrentConfig();
 	const config = useCurrentConfig();
+	const homeSideBarToggle = useHomeSidebar().toggle;
+
 	const changePage = useCallback(
 		(page: HomePaySelected) => {
 			setConfig({ homePageSelected: page });
@@ -24,14 +27,14 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 	);
 	return (
 		<>
-			{config.siderMenuOpened && (
+			{config.sideBarMenuOpened && (
 				<CView
 					height={"100vh"}
-					bg={Colors.bg700}
-					width="10%"
+					bg={Colors.bgt600}
+					width="100%"
 					style={styles.container}
 				>
-					<IconButton>
+					<IconButton onClick={homeSideBarToggle}>
 						<MenuIcon />
 					</IconButton>
 				</CView>
