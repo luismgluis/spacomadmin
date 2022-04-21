@@ -48,7 +48,7 @@ const CInput: React.FC<CInputProps> = ({
 			paddingLeft: marginX,
 			paddingRight: marginX,
 			width: width !== "" ? width : undefined,
-		};
+		} as React.CSSProperties;
 	}, [marginX, marginY, width]);
 
 	const inputStyles: React.CSSProperties = {
@@ -98,7 +98,11 @@ const CInput: React.FC<CInputProps> = ({
 						defaultValue={defaultValue}
 						onChange={(e: any) => customChange(e)}
 						placeholder={placeHolder}
-						style={{ color: getColor(900), width: "100%" }}
+						style={{
+							color: getColor(900),
+							width: "100%",
+							borderRadius: "4px",
+						}}
 					/>
 					{type === "password" && (
 						<CView px={5}>

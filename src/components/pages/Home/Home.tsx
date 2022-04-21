@@ -7,7 +7,7 @@ import CView from "../../ui/CView/CView";
 import AdminHome from "../AdminHome/AdminHome";
 import HomeTopLarge from "./HomeTopLarge/HomeTopLarge";
 import HomeTopSmall from "./HomeTopSmall/HomeTopSmall";
-import HomeSider from "./HomeSider/HomeSider";
+import HomeSidebar from "./HomeSidebar/HomeSidebar";
 
 const TAG = "Home";
 type HomeProps = {
@@ -52,8 +52,8 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 	}, [pageSelected, homePageSelectedOptions]);
 
 	return (
-		<CView className="Home" variant="flex-horizontal">
-			<HomeSider />
+		<CView className="Home">
+			<HomeSidebar />
 			<CView minHeight={"100vh"}>
 				<HomeTopLarge />
 				<HomeTopSmall />

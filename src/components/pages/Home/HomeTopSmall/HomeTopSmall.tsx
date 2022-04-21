@@ -1,14 +1,25 @@
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useCallback } from "react";
 import AppIconLarge from "../../../../icons/AppIcon/AppIconLarge";
 import { Colors } from "../../../../themes/Colors";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import CText from "../../../ui/CText/CText";
 import CView from "../../../ui/CView/CView";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+	useCurrentConfig,
+	useSetCurrentConfig,
+} from "../../../hooks/currentConfig";
 type HomeTopSmallProps = {};
 const HomeTopSmall: React.FC<HomeTopSmallProps> = ({}) => {
 	const breakXs = useMediaQuery("down", "xs");
+	const config = useCurrentConfig();
+	const setConfig = useSetCurrentConfig();
+
+	const openSlide = useCallback(() => {
+		setConfig({ ...config, siderMenuOpened: !config.siderMenuOpened });
+	}, [config, setConfig]);
+
 	if (!breakXs) return <></>;
 	return (
 		<CView className="HomeTop" variant="flex-horizontal" p={10}>
@@ -23,7 +34,7 @@ const HomeTopSmall: React.FC<HomeTopSmallProps> = ({}) => {
 				width="100%"
 				variant="flex-horizontal"
 			>
-				<IconButton size="large">
+				<IconButton size="large" onClick={openSlide}>
 					<MenuIcon fontSize="large" htmlColor="white" />
 				</IconButton>
 				<CView centerItems>

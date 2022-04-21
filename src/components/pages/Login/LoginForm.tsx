@@ -33,7 +33,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onGoToNext = () => null }) => {
 	const [loadingEnabled] = useState(false);
 	const [createEnabled, setCreateEnabled] = useState(false);
 	const setMe = useSetCurrentUser();
-	const me = useCurrentUser();
 	const login = useCallback(
 		(email: string, pass: string) => {
 			console.log(TAG, "loginclick");

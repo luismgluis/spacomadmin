@@ -14,13 +14,13 @@ const Login: React.FC<LoginProps> = ({ prop1 }) => {
 	console.log(TAG, "login load");
 
 	const customContainerStyles: React.CSSProperties = {
-		backgroundColor: Colors.bg900,
+		backgroundColor: Colors.bg200,
 	};
 
 	const [registerEnabled, setRegisterEnabled] = useState(false);
 
 	return (
-		<CView className="Login" style={customContainerStyles}>
+		<CView className="Login" height={"100vh"} style={customContainerStyles}>
 			<CView className="loginContainer">
 				<CView className="subContainer">
 					{!registerEnabled && (

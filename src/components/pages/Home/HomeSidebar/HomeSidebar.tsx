@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import "./HomeSider.scss";
+import "./HomeSidebar.scss";
 
 import { HomePaySelected } from "../Home";
 import {
@@ -9,6 +9,7 @@ import {
 import CView from "../../../ui/CView/CView";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
+import { Colors } from "../../../../themes/Colors";
 
 const TAG = "PAY-SIDER";
 type HomeSiderProps = {};
@@ -24,7 +25,12 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 	return (
 		<>
 			{config.siderMenuOpened && (
-				<CView height={"100vh"} bg="black" width="10%">
+				<CView
+					height={"100vh"}
+					bg={Colors.bg700}
+					width="10%"
+					style={styles.container}
+				>
 					<IconButton>
 						<MenuIcon />
 					</IconButton>
@@ -32,5 +38,11 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 			)}
 		</>
 	);
+};
+const styles: Record<string, React.CSSProperties> = {
+	container: {
+		position: "absolute",
+		zIndex: 100,
+	},
 };
 export default HomeSider;
