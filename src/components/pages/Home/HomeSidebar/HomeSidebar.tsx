@@ -19,6 +19,10 @@ import AppIconLarge from "../../../../icons/AppIcon/AppIconLarge";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { ArrowBack, Send } from "@mui/icons-material";
 import { HomePaySelected } from "../Home";
+import CreateDivFadeInLeftAnim from "../../../animations/CreateDivFadeInLeftAnim";
+
+const Container = CreateDivFadeInLeftAnim(0.3);
+// const SubContainer = CreateDivFadeInLeftAnim(0.3);
 
 type HomeSideListItemProps = {
 	title: string;
@@ -26,11 +30,14 @@ type HomeSideListItemProps = {
 };
 const HomeSideListItem: React.FC<HomeSideListItemProps> = ({ title, page }) => {
 	const setHomePage = useSetHomePage();
+	const homeSideBarVisible = useHomeSidebar().setVisible;
+
 	return (
 		<ListItemButton
 			href="#simple-list"
 			onClick={() => {
 				setHomePage(page);
+				homeSideBarVisible(false);
 			}}
 		>
 			<ListItemIcon>
@@ -53,12 +60,9 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 	return (
 		<>
 			{config.sideBarMenuOpened && (
-				<CView
-					height={"100vh"}
-					bg={Colors.bgt600}
-					width="100%"
+				<Container
 					style={styles.container}
-					onClick={(e) => {
+					onClick={(e: any) => {
 						e.stopPropagation();
 						homeSideBarToggle();
 					}}
@@ -96,7 +100,7 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 							<ArrowBack htmlColor="white" />
 						</IconButton>
 					</CView>
-				</CView>
+				</Container>
 			)}
 		</>
 	);
@@ -105,6 +109,9 @@ const styles: Record<string, React.CSSProperties> = {
 	container: {
 		position: "absolute",
 		zIndex: 100,
+		background: Colors.bgt600,
+		width: "100%",
+		height: "100vh",
 	},
 	subContainer: {
 		borderRightStyle: "solid",

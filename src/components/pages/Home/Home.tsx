@@ -42,6 +42,24 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 				component: <AdminHome />,
 			},
 			{
+				id: "tasks",
+				displayName: "Tareas",
+				headerName: "Tareas",
+				component: <AdminHome />,
+			},
+			{
+				id: "clients",
+				displayName: "Clientes",
+				headerName: "Clientes",
+				component: <AdminHome />,
+			},
+			{
+				id: "employees",
+				displayName: "Tareas",
+				headerName: "Tareas",
+				component: <AdminHome />,
+			},
+			{
 				id: "config",
 				displayName: "Configuracion",
 				headerName: "Configuracion",
