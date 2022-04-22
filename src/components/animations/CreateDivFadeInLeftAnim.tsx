@@ -5,9 +5,9 @@ import { fadeInLeft } from "react-animations";
 const bounceAnimation = keyframes`${fadeInLeft}`;
 
 const CreateDivFadeInLeftAnim = (time: number) => {
-	return styled.div`
-		animation: ${time}s ${bounceAnimation};
-	`;
+  return styled.div`
+    animation: ${time}s ${bounceAnimation};
+  `;
 };
 
 export default CreateDivFadeInLeftAnim;

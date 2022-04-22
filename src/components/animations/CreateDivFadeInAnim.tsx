@@ -5,9 +5,9 @@ import { fadeIn } from "react-animations";
 const bounceAnimation = keyframes`${fadeIn}`;
 
 const CreateDivFadeInAnim = (time: number) => {
-	return styled.div`
-		animation: ${time}s ${bounceAnimation};
-	`;
+  return styled.div`
+    animation: ${time}s ${bounceAnimation};
+  `;
 };
 
 export default CreateDivFadeInAnim;
