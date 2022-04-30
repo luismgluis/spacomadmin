@@ -18,12 +18,25 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
 	blockRedirect,
 	path,
 }) => {
-	console.log(TAG, "render");
-	// const [me, setMe] = useState(new User(null));
 	const [hasSession, setHasSession] = useState(0);
 	const me = useCurrentUser();
 	const setMe = useSetCurrentUser();
-	// const setBusiness = useSetCurrentBusiness();
+
+	useEffect(() => {
+		if (me.isEmpty) return;
+
+		Api.messaging
+			.getToken()
+			.then((token) => {
+				if (token) {
+					console.log("token", token);
+					Api.database.user.saveMessagingToken(me.id, token || "");
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, [me]);
 
 	useEffect(() => {
 		const uid = sessionStorage.getItem("uid");

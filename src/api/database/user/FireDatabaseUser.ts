@@ -13,6 +13,30 @@ class FireDatabaseUser {
 		this.allUsers = {};
 		this.allBusiness = {};
 	}
+	async saveMessagingToken(uid: string, token: string) {
+		if (uid === "") return false;
+		if (!token) return false;
+		const data = {
+			uid: uid,
+			token,
+			creationDate: Number((+new Date() / 1000).toFixed(0)),
+			creationDateServer: this.app.serverTimestamp(),
+		};
+		const qsnap = await this.app
+			.database()
+			.collection("tokens")
+			.doc(uid)
+			.set(data)
+			.then((res) => res)
+			.catch((err) => {
+				console.log(err);
+				return null;
+			});
+		if (qsnap) {
+			return true;
+		}
+		return false;
+	}
 	saveUser(user: User): Promise<User> {
 		const that = this;
 		return new Promise<User>((resolve, reject) => {

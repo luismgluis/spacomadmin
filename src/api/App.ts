@@ -37,6 +37,13 @@ class App {
 	public set databaseFns(v: Database) {
 		this._databaseFns = v;
 	}
+	public get fire(): firebase.app.App | null {
+		return this._fireProject;
+	}
+
+	serverTimestamp() {
+		return firebase.firestore.Timestamp.fromDate(new Date());
+	}
 
 	database() {
 		return this._fireProject?.firestore()!;

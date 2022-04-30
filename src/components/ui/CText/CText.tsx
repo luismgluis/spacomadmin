@@ -13,13 +13,13 @@ type CTextProps = CustomStylesType &
 		className?: string;
 		type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
 		size?: number;
-		color?: keyof typeof Colors;
+		color?: string;
 		style?: React.CSSProperties;
 		children?: JSX.Element | string;
 	};
 const CText: React.FC<CTextProps> = (props) => {
 	const customStyles: React.CSSProperties = {
-		color: props.color ? Colors[props.color] : Colors.black,
+		color: props.colorx ? Colors[props.colorx] : props.color,
 		fontSize: props.size ? props.size : undefined,
 		...props.style,
 	};

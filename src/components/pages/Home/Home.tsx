@@ -9,63 +9,31 @@ import HomeTopLarge from "./HomeTopLarge/HomeTopLarge";
 import HomeTopSmall from "./HomeTopSmall/HomeTopSmall";
 import HomeSidebar from "./HomeSidebar/HomeSidebar";
 import Config from "../Config/Config";
+import HomeMessaging from "./HomeMessaging";
+import Clients from "../Clients/Clients";
+import Employees from "../Employees/Employees";
+import {
+	HomePageSelectedOptions,
+	HomePageSelectedOptionsItem,
+	HomePaySelected,
+	HomePaySelectedGetTitle,
+} from "./HomePagesData";
 
 const TAG = "Home";
 type HomeProps = {
 	prop1?: any;
 };
-export type HomePaySelected =
-	| "home"
-	| "tasks"
-	| "clients"
-	| "employees"
-	| "config";
-type HomePageSelectedOptionsItem = {
-	id: HomePaySelected;
-	displayName: string;
-	headerName: string;
-	component: JSX.Element;
-};
+
 const Home: React.FC<HomeProps> = ({ prop1 }) => {
-	console.log(TAG, "render");
 	const config = useCurrentConfig();
 	const [pageSelected, setPageSelected] = useState<HomePaySelected>("home");
 
-	useEffect(() => setPageSelected(config.homePageSelected), [config]);
+	useEffect(() => {
+		setPageSelected(config.homePageSelected!);
+	}, [config]);
 
 	const homePageSelectedOptions = useMemo<HomePageSelectedOptionsItem[]>(
-		() => [
-			{
-				id: "home",
-				displayName: "Inicio",
-				headerName: "Inicio",
-				component: <AdminHome />,
-			},
-			{
-				id: "tasks",
-				displayName: "Tareas",
-				headerName: "Tareas",
-				component: <AdminHome />,
-			},
-			{
-				id: "clients",
-				displayName: "Clientes",
-				headerName: "Clientes",
-				component: <AdminHome />,
-			},
-			{
-				id: "employees",
-				displayName: "Tareas",
-				headerName: "Tareas",
-				component: <AdminHome />,
-			},
-			{
-				id: "config",
-				displayName: "Configuracion",
-				headerName: "Configuracion",
-				component: <Config />,
-			},
-		],
+		() => HomePageSelectedOptions,
 		[]
 	);
 
@@ -77,6 +45,7 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 
 	return (
 		<CView className="Home">
+			<HomeMessaging />
 			<HomeSidebar />
 			<CView minHeight={"100vh"}>
 				<HomeTopLarge />

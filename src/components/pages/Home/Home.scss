@@ -1,40 +1,11 @@
 @import "./../../../themes/themeStyles.scss";
 .Home {
-  .panelHeaderText {
-    display: flex;
-    padding-left: 2rem;
-    align-items: center;
-  }
-  .ant-layout-content {
-    overflow: auto;
-  }
-}
-.trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
-// .logo {
-//   width: 160px;
-//   height: 32px;
-//   background: rgba(255, 255, 255, 0.2);
-//   margin: 16px;
-// }
-
-.site-layout .site-layout-background {
-  background: #fff;
-}
-.ant-layout-header .header {
-  display: flex;
-}
-.flex-setting {
-  display: flex;
-  flex-direction: row-reverse;
-  width: 100%;
+	position: relative;
+	overflow: hidden;
+	height: 100vh;
+	.panelHeaderText {
+		display: flex;
+		padding-left: 2rem;
+		align-items: center;
+	}
 }

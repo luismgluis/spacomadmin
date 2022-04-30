@@ -1,0 +1,66 @@
+.Public {
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-bottom: 2rem;
+	.publicBody {
+		display: flex;
+		justify-content: space-around;
+	}
+	.publicFooter {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	a {
+		text-decoration: none !important;
+	}
+	.publicCard {
+		border-radius: 12px;
+		background-color: white;
+		border: solid;
+		overflow: hidden;
+		border-width: 1px;
+		margin-bottom: 1rem;
+		min-height: 400px;
+		max-width: 250px;
+		position: relative;
+		height: fit-content;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		img {
+			width: 100%;
+			min-height: 250px;
+		}
+		.content {
+			// position: absolute;
+			display: block;
+			width: 100%;
+			margin-top: -20px;
+			bottom: 0;
+			width: 100%;
+			min-height: 165px;
+			padding: 5px;
+			h5 {
+				text-align: center;
+				font-size: large;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+				padding: 0px;
+			}
+		}
+		.publicCardBottom {
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.whatsappLink {
+			background-color: #1fa855;
+			a {
+				color: white;
+			}
+		}
+	}
+}

@@ -11,6 +11,7 @@ import {
 	SessionContextProvider,
 	useSessionContextStore,
 } from "./context/SessionContext";
+import Public from "./components/pages/Public/Public";
 
 type RoutesType = {
 	path: string;
@@ -32,9 +33,14 @@ function App() {
 				private: true,
 			},
 			{
-				path: "/",
+				path: "/admin",
 				element: <Home />,
 				private: true,
+			},
+			{
+				path: "/",
+				element: <Public />,
+				private: false,
 			},
 		];
 		return arr.map((item, index) => {

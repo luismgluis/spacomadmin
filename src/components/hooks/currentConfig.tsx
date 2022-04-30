@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import { useSessionContext } from "../../context/SessionContext";
-import { HomePaySelected } from "../pages/Home/Home";
+import { HomePaySelected } from "../pages/Home/HomePagesData";
 
 export type CurrentConfigType = {
-	homePageSelected: HomePaySelected;
+	homePageSelected?: HomePaySelected;
 	sideBarMenuOpened?: boolean;
 };
 
@@ -17,17 +17,18 @@ export function useSetCurrentConfig() {
 }
 
 export function useHomeSidebar() {
-	const config = useCurrentConfig();
+	// const config = useCurrentConfig();
 	const setConfig = useSetCurrentConfig();
 
 	const toggleSidebar = useCallback(() => {
-		setConfig({ ...config, sideBarMenuOpened: !config.sideBarMenuOpened });
-	}, [config, setConfig]);
+		setConfig((data) => ({ sideBarMenuOpened: !data.sideBarMenuOpened }));
+	}, [setConfig]);
+
 	const setSidebarVisible = useCallback(
 		(visible: boolean) => {
-			setConfig({ ...config, sideBarMenuOpened: visible });
+			setConfig({ sideBarMenuOpened: visible });
 		},
-		[config, setConfig]
+		[setConfig]
 	);
 	return {
 		toggle: toggleSidebar,
@@ -36,14 +37,12 @@ export function useHomeSidebar() {
 }
 
 export function useSetHomePage() {
-	const config = useCurrentConfig();
 	const setConfig = useSetCurrentConfig();
-
 	const change = useCallback(
 		(page: HomePaySelected) => {
-			setConfig({ ...config, homePageSelected: page });
+			setConfig({ homePageSelected: page });
 		},
-		[setConfig, config]
+		[setConfig]
 	);
 	return change;
 }
