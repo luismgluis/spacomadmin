@@ -2,10 +2,14 @@
 .Home {
 	position: relative;
 	overflow: hidden;
+
 	height: 100vh;
 	.panelHeaderText {
 		display: flex;
 		padding-left: 2rem;
 		align-items: center;
+	}
+	.HomeContainer {
+		overflow-y: auto;
 	}
 }

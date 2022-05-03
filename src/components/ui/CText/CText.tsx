@@ -1,9 +1,11 @@
+import "./CText.scss";
 import { Typography } from "@mui/material";
 import React from "react";
 import { Colors } from "../../../themes/Colors";
 import {
 	CustomStylesFontType,
 	CustomStylesType,
+	useCustomStyles,
 } from "../CView/useCustomViewStyles";
 
 const TAG = "CUSTOM TEXT";
@@ -18,12 +20,15 @@ type CTextProps = CustomStylesType &
 		children?: JSX.Element | string;
 	};
 const CText: React.FC<CTextProps> = (props) => {
+	const customType = props.type || "p";
+	const cStyles = useCustomStyles(props);
 	const customStyles: React.CSSProperties = {
+		...cStyles,
 		color: props.colorx ? Colors[props.colorx] : props.color,
 		fontSize: props.size ? props.size : undefined,
 		...props.style,
 	};
-	if (props.type === "h1")
+	if (customType === "h1")
 		return (
 			<Typography
 				variant="h1"
@@ -33,7 +38,7 @@ const CText: React.FC<CTextProps> = (props) => {
 				{props.children}
 			</Typography>
 		);
-	if (props.type === "h2")
+	if (customType === "h2")
 		return (
 			<Typography
 				variant="h2"
@@ -43,7 +48,7 @@ const CText: React.FC<CTextProps> = (props) => {
 				{props.children}
 			</Typography>
 		);
-	if (props.type === "h3")
+	if (customType === "h3")
 		return (
 			<Typography
 				variant="h3"
@@ -53,7 +58,7 @@ const CText: React.FC<CTextProps> = (props) => {
 				{props.children}
 			</Typography>
 		);
-	if (props.type === "h4")
+	if (customType === "h4")
 		return (
 			<Typography
 				variant="h4"
@@ -63,7 +68,7 @@ const CText: React.FC<CTextProps> = (props) => {
 				{props.children}
 			</Typography>
 		);
-	if (props.type === "h5")
+	if (customType === "h5")
 		return (
 			<Typography
 				variant="h5"
@@ -73,7 +78,7 @@ const CText: React.FC<CTextProps> = (props) => {
 				{props.children}
 			</Typography>
 		);
-	if (props.type === "h6")
+	if (customType === "h6")
 		return (
 			<Typography
 				variant="h6"

@@ -4,19 +4,14 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useCurrentConfig } from "../../hooks/currentConfig";
 
 import CView from "../../ui/CView/CView";
-import AdminHome from "../AdminHome/AdminHome";
 import HomeTopLarge from "./HomeTopLarge/HomeTopLarge";
 import HomeTopSmall from "./HomeTopSmall/HomeTopSmall";
 import HomeSidebar from "./HomeSidebar/HomeSidebar";
-import Config from "../Config/Config";
 import HomeMessaging from "./HomeMessaging";
-import Clients from "../Clients/Clients";
-import Employees from "../Employees/Employees";
 import {
 	HomePageSelectedOptions,
 	HomePageSelectedOptionsItem,
 	HomePaySelected,
-	HomePaySelectedGetTitle,
 } from "./HomePagesData";
 
 const TAG = "Home";
@@ -27,7 +22,7 @@ type HomeProps = {
 const Home: React.FC<HomeProps> = ({ prop1 }) => {
 	const config = useCurrentConfig();
 	const [pageSelected, setPageSelected] = useState<HomePaySelected>("home");
-
+	const [headerHeight, setHeaderHeight] = useState(0);
 	useEffect(() => {
 		setPageSelected(config.homePageSelected!);
 	}, [config]);
@@ -47,13 +42,30 @@ const Home: React.FC<HomeProps> = ({ prop1 }) => {
 		<CView className="Home">
 			<HomeMessaging />
 			<HomeSidebar />
-			<CView minHeight={"100vh"}>
-				<HomeTopLarge />
-				<HomeTopSmall />
-				<CView>{currentOption?.component}</CView>
+			<CView minHeight={"100vh"} className="HomeContainer">
+				<CView
+					className="HomeTop"
+					onHeightChange={(n) => setHeaderHeight(n)}
+				>
+					<HomeTopLarge />
+					<HomeTopSmall />
+				</CView>
+
+				<CView
+					className="HomeBody"
+					height={`calc(100vh - ${headerHeight}px)`}
+					style={styles.homeBody}
+				>
+					{currentOption?.component}
+				</CView>
 			</CView>
 		</CView>
 	);
 };
 
+const styles: Record<string, React.CSSProperties> = {
+	homeBody: {
+		overflowY: "auto",
+	},
+};
 export default Home;

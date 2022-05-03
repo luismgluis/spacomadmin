@@ -20,6 +20,7 @@ export type HomePageSelectedOptionsItem = {
 	displayName: string;
 	headerName: string;
 	component: JSX.Element;
+	icon?: JSX.Element;
 };
 export function HomePaySelectedGetTitle(page: HomePaySelected): string {
 	switch (page) {
@@ -59,30 +60,36 @@ export const HomePageSelectedOptions: HomePageSelectedOptionsItem[] = [
 		id: "home",
 		displayName: HomePaySelectedGetTitle("home"),
 		headerName: HomePaySelectedGetTitle("home"),
+		icon: HomePaySelectedGetIcon("home"),
 		component: <AdminHome />,
 	},
 	{
 		id: "tasks",
 		displayName: HomePaySelectedGetTitle("tasks"),
 		headerName: HomePaySelectedGetTitle("tasks"),
+		icon: HomePaySelectedGetIcon("tasks"),
+
 		component: <AdminHome />,
 	},
 	{
 		id: "clients",
 		displayName: HomePaySelectedGetTitle("clients"),
 		headerName: HomePaySelectedGetTitle("clients"),
+		icon: HomePaySelectedGetIcon("clients"),
 		component: <Clients />,
 	},
 	{
 		id: "employees",
 		displayName: HomePaySelectedGetTitle("employees"),
 		headerName: HomePaySelectedGetTitle("employees"),
+		icon: HomePaySelectedGetIcon("employees"),
 		component: <Employees />,
 	},
 	{
 		id: "config",
 		displayName: HomePaySelectedGetTitle("config"),
 		headerName: HomePaySelectedGetTitle("config"),
+		icon: HomePaySelectedGetIcon("config"),
 		component: <Config />,
 	},
 ];

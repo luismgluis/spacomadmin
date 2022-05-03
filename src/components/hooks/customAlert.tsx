@@ -1,15 +1,31 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import Notification from "rc-notification";
+import { NotificationInstance } from "rc-notification/es/Notification";
+import utils from "../../libs/utils/utils";
+
+let notification: NotificationInstance | null = null;
+Notification.newInstance(
+	{
+		maxCount: 5,
+	},
+	(n) => {
+		notification = n;
+	}
+);
 
 export function useCustomAlert() {
 	const ale = useCallback((a: any, b: any) => {
-		Notification.newInstance({}, (notification) => {
-			notification.notice({
-				content: "content",
-			});
+		const n = utils.generateKey("notification");
+		notification?.notice({
+			duration: 3,
+			key: n,
 		});
-		return { close: () => {} };
+		return {
+			close: () => {
+				notification?.removeNotice(n);
+			},
+		};
 	}, []);
 	const alert = useMemo(
 		() => ({

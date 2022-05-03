@@ -170,6 +170,10 @@ export function useCustomStyles(props: any) {
 		if (props.bg) {
 			newStyles.backgroundColor = props.bg;
 		}
+		if (props.bgx) {
+			const pColor: keyof typeof Colors = props.bgx;
+			if (props.bgx) newStyles.backgroundColor = Colors[pColor];
+		}
 		if (props.withShadow) {
 			newStyles.boxShadow =
 				"0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)";

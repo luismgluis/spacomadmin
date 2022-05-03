@@ -1,5 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Montserrat:wght@200;400;500;600;700;800;900&display=swap');
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+font-family: 'Montserrat', sans-serif;
+}
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 #root {
   position: absolute;
   width: 100vw;
   height: 100vh;
+}
+
+.customShadow {
+  box-shadow: 0 1px 5px rgb(0 0 0 / 5%), 0 2px 2px rgb(0 0 0 / 3%), 0 3px 1px -2px rgb(0 0 0 / 3%);
 }

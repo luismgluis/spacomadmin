@@ -8,7 +8,7 @@ import TaskIcon from "@mui/icons-material/Task";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import EngineeringIcon from "@mui/icons-material/Engineering";
-import { HomePaySelected } from "../HomePagesData";
+import { HomePageSelectedOptions, HomePaySelected } from "../HomePagesData";
 
 type HomeSideListItemProps = {
 	title: string;
@@ -43,26 +43,17 @@ type HomeSidebarListItemsProps = {};
 const HomeSidebarListItems: React.FC<HomeSidebarListItemsProps> = ({}) => {
 	return (
 		<CView className="homeSidebarListItems">
-			<HomeSideListItem
-				title="Tareas"
-				page="home"
-				icon={<TaskIcon htmlColor={Colors.primary100} />}
-			/>
-			<HomeSideListItem
-				title="Clientes"
-				page="clients"
-				icon={<AssignmentIndIcon htmlColor={Colors.primary100} />}
-			/>
-			<HomeSideListItem
-				title="Empleados"
-				page="employees"
-				icon={<HandymanIcon htmlColor={Colors.primary100} />}
-			/>
-			<HomeSideListItem
-				title="Configuraciones"
-				page="config"
-				icon={<EngineeringIcon htmlColor={Colors.primary100} />}
-			/>
+			{HomePageSelectedOptions.map((page) => {
+				if (page.id === "home") return <></>;
+				return (
+					<HomeSideListItem
+						key={`HomeSideListItem${page.id}`}
+						title={page.displayName}
+						page={page.id}
+						icon={page.icon!}
+					/>
+				);
+			})}
 		</CView>
 	);
 };

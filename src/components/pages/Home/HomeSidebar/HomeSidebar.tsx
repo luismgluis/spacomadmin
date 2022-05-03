@@ -24,9 +24,10 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 
 	return (
 		<>
-			{config.sideBarMenuOpened && (
+			{(config.sideBarMenuOpened || !screenXs) && (
 				<Container
-					style={styles.container}
+					className="containerAnim"
+					style={screenXs ? styles.containerXS : styles.containerXL}
 					onClick={(e: any) => {
 						e.stopPropagation();
 						homeSideBarToggle();
@@ -36,7 +37,7 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 						className="homeSidebarMenu"
 						height={"100vh"}
 						bg={Colors.bg600}
-						width="50%"
+						width={screenXs ? "50%" : "100%"}
 						style={styles.subContainer}
 						onClick={(e) => {
 							e.stopPropagation();
@@ -58,11 +59,17 @@ const HomeSider: React.FC<HomeSiderProps> = ({}) => {
 	);
 };
 const styles: Record<string, React.CSSProperties> = {
-	container: {
+	containerXS: {
 		position: "absolute",
 		zIndex: 100,
 		background: Colors.bgt600,
 		width: "100%",
+		height: "100vh",
+	},
+	containerXL: {
+		background: Colors.bgt600,
+		width: "20%",
+		maxWidth: 215,
 		height: "100vh",
 	},
 	subContainer: {
